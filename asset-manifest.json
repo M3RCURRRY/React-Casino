@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/React-Casino/static/css/main.3995ae72.css",
+    "main.js": "/React-Casino/static/js/main.47efde23.js",
+    "static/js/787.91591c67.chunk.js": "/React-Casino/static/js/787.91591c67.chunk.js",
+    "index.html": "/React-Casino/index.html",
+    "main.3995ae72.css.map": "/React-Casino/static/css/main.3995ae72.css.map",
+    "main.47efde23.js.map": "/React-Casino/static/js/main.47efde23.js.map",
+    "787.91591c67.chunk.js.map": "/React-Casino/static/js/787.91591c67.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3995ae72.css",
+    "static/js/main.47efde23.js"
+  ]
+}
