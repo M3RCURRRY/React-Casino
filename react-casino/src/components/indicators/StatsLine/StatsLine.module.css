@@ -1,0 +1,15 @@
+.statItemContainer {
+  background-color: black;
+  display: flex;
+  flex-direction: row;
+  border-radius: 2px;
+
+  min-width: 100%;
+}
+
+.statItem {
+  min-width: 15px;
+  min-height: 5px;
+  margin: 1px;
+  border-radius: 1px;
+}

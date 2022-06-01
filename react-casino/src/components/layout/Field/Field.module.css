@@ -1,0 +1,39 @@
+.fieldContainer {
+  height: auto;
+  width: auto;
+  background-color: lightgray;
+  border-radius: 5px;
+
+  display: flex;
+  flex-direction: row;
+
+  border: 2px solid black;
+
+  -webkit-box-shadow: 4px 4px 0px -1px rgba(0, 0, 0, 1);
+  -moz-box-shadow: 4px 4px 0px -1px rgba(0, 0, 0, 1);
+  box-shadow: 4px 4px 0px -1px rgba(0, 0, 0, 1);
+}
+
+.numberContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 720px;
+
+  padding: 5px;
+}
+
+.zeroContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+
+  padding: 5px;
+}
+
+.rowContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
