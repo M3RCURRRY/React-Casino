@@ -1,12 +1,11 @@
-.rowStatContainer {
-  margin: 5px;
-  min-width: 75px;
-  min-height: 50px;
-  background-color: indigo;
-  color: white;
+.halfItem {
+  margin-left: 10px;
+  width: 50%;
+  height: 50px;
   border-radius: 5px;
-
-  padding: 0px 5px;
+  font-size: 1rem;
+  color: white;
+  padding: 5px;
 
   display: flex;
   flex-direction: column;
@@ -21,7 +20,7 @@
   transition: outline 0.1s;
 }
 
-.rowStatContainer:hover {
+.halfItem:hover {
   outline: 5px solid white;
   cursor: cell;
 }

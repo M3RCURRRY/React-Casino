@@ -9,10 +9,10 @@ class RowStats extends React.Component {
 
   render() {
     return(
-      <div className={styles.rowStatContainer}>
-        <StatsLine />
+      <button className={styles.rowStatContainer}>
         {this.props.name}
-      </div>
+        <StatsLine indWidth="6px"/>
+      </button>
     )
   }
 }

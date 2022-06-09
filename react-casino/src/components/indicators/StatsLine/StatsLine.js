@@ -28,7 +28,7 @@ class StatsLine extends React.Component {
                 scoreStyle = "red";
               }
             }
-            return <div key={item} className={styles.statItem} style={{backgroundColor: scoreStyle}}/>
+            return <div key={item} className={styles.statItem} style={{backgroundColor: scoreStyle, width: this.props.indWidth}}/>
           })
         }
       </div>);
