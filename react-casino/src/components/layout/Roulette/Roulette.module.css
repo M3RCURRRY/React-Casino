@@ -1,13 +1,45 @@
 .rouletteContainer {
-  width: 100%;
+  width: auto;
   height: auto;
-  margin-top: 400px;
+
+  position: relative;
+}
+
+img {
+  top: 0;
+  position: absolute;
+}
+
+i {
+  top: 60px;
+  left: -7px;
+  position: absolute;
+}
+
+.wheelContainer {
+  position: relative;
 
   display: flex;
   align-items: center;
   justify-content: center;
+
+  height: 760px;
+
+  -webkit-transition: all 2.5s ease-in-out;
+  -moz-transition: all 2.5s ease-in-out;
+  -o-transition: all 2.5s ease-in-out;
+  transition: all 2.5s ease-in-out;
 }
 
-.rouletteContainer > img {
-  position: absolute;
+.arrow {
+  border: solid red;
+  border-width: 0 10px 10px 0;
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
+button {
+  z-index: 1;
 }
