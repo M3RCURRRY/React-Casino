@@ -4,14 +4,10 @@ import styles from "./StatsLine.module.css";
 class StatsLine extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      times: 10,
-    };
   }
 
   render() {
-    const score = Array.from(Array(this.state.times).keys());
+    const score = Array.from(Array((this.props.times > 10) ? 10 : this.props.times).keys());
     return (
       <div className={styles.statItemContainer}>
         {

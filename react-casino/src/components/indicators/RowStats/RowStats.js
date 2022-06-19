@@ -11,7 +11,7 @@ class RowStats extends React.Component {
     return(
       <button className={styles.rowStatContainer}>
         {this.props.name}
-        <StatsLine indWidth="6px"/>
+        <StatsLine times={this.props.rollResult} indWidth="6px"/>
       </button>
     )
   }

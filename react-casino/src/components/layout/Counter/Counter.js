@@ -5,32 +5,51 @@ class Counter extends React.Component {
     super(props);
 
     this.state = {
-      time: 30,
+      time: 5,
       isRolling: false
     };
     
-    this.runTimer = this.runTimer.bind(this);
-    this.suspendTimer = this.suspendTimer.bind(this);
+    //this.runTimer = this.runTimer.bind(this);
+    //this.suspendTimer = this.suspendTimer.bind(this);
   }
 
   componentDidMount() {
-    console.log("ABOBA");
+    this.runTimer();
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.countDown);
   }
 
   runTimer() {
     this.countDown = setInterval(() => {
-      console.log(this.state.time);
+      this.setState((prev) => ({
+        time: prev.time - 1
+      }));
+
+      if (this.state.time <= 1) {
+        this.suspendTimer();
+      }
+
     }, 1000);
   }
 
   suspendTimer() {
-
+    clearInterval(this.countDown);
+    this.props.rollHandler();
+    setTimeout(() => {
+      this.setState({
+        time: 5,
+      });
+      this.props.rollHandler();
+      this.runTimer();
+    }, 5000);
   }
 
   render() {
     return (
       <p>
-        {this.state.time}
+        {`${this.state.time} ${(this.state.time > 1) ? " seconds to roll": " second to roll"}`}
       </p>
     );
   }

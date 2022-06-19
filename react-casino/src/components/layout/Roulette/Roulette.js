@@ -6,19 +6,62 @@ import inner from "./inner.png";
 import texture from "./texture.png";
 import Counter from "../Counter/Counter";
 
+const deg2number = {
+  1: 0,
+  2: 26,
+  3: 3,
+  4: 35,
+  5: 12,
+  6: 28,
+  7: 7,
+  8: 29,
+  9: 18,
+  10: 22,
+  11: 9,
+  12: 31,
+  13: 14,
+  14: 20,
+  15: 1,
+  16: 33,
+  17: 16,
+  18: 24,
+  19: 5,
+  20: 10,
+  21: 23,
+  22: 8,
+  23: 30,
+  24: 11,
+  25: 36,
+  26: 13,
+  27: 27,
+  28: 6,
+  29: 34,
+  30: 17,
+  31: 25,
+  32: 2,
+  33: 21,
+  34: 4,
+  35: 19,
+  36: 15,
+  37: 32
+}
+
 class Roulette extends React.Component {
   constructor(props) {
     super(props);
 
     this.rotated = false;
+  }
 
-    this.spinWheelHandler = this.spinWheelHandler.bind(this);
+  componentWillUnmount() {
+    console.log("UNMOUNT");
   }
 
   spinWheelHandler() {
     let myWheel = document.getElementById("wheel");
 
-    let deg = this.rotated ? 0 : 360;
+    const number = parseInt((Math.random() * (37 - 1) + 1).toFixed(0))
+    const deg = this.rotated ? 0 : (360 - 9.72972973) + number * 9.72972973;
 
     myWheel.style.webkitTransform = 'rotate('+deg+'deg)'; 
     myWheel.style.mozTransform    = 'rotate('+deg+'deg)'; 
@@ -27,6 +70,13 @@ class Roulette extends React.Component {
     myWheel.style.transform       = 'rotate('+deg+'deg)'; 
 
     this.rotated = !this.rotated;
+
+    if (this.rotated) {
+      setTimeout(() => {
+        console.log(deg2number[number]);
+        this.props.onRolled(deg2number[number]);
+      }, 3000);
+    }
   }
 
   render() {
@@ -40,8 +90,8 @@ class Roulette extends React.Component {
             <img src={texture} />
           </div>
         </div>
-        <button onClick={this.spinWheelHandler}>Start</button>
-        <Counter />
+        <button onClick={() => {this.spinWheelHandler()}}>Start</button>
+        <Counter rollHandler={() => {this.spinWheelHandler()}} />
       </>
     );
   }

@@ -11,7 +11,7 @@ class Color extends React.Component {
     return (
       <button className={styles.colorItem} style={{ backgroundColor: this.props.color }}>
         {this.props.value}
-        <StatsLine indWidth="4px"/>
+        <StatsLine times={this.props.rollResult} indWidth="4px"/>
       </button>
     );
   }

@@ -11,7 +11,7 @@ class Dozen extends React.Component {
     return (
       <button className={styles.dozenItem} style={{ backgroundColor: this.props.color }}>
         {this.props.value}
-        <StatsLine indWidth="10%" />
+        <StatsLine times={this.props.rollResult} indWidth="10%" />
       </button>
     );
   }
