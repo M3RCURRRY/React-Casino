@@ -5,6 +5,7 @@ import wheel from "./roulette.png";
 import inner from "./inner.png";
 import texture from "./texture.png";
 import Counter from "../Counter/Counter";
+import History from "../History/History";
 
 const deg2number = {
   1: 0,
@@ -51,6 +52,10 @@ class Roulette extends React.Component {
     super(props);
 
     this.rotated = false;
+
+    this.state = {
+      history: [],
+    }
   }
 
   componentWillUnmount() {
@@ -60,7 +65,7 @@ class Roulette extends React.Component {
   spinWheelHandler() {
     let myWheel = document.getElementById("wheel");
 
-    const number = parseInt((Math.random() * (37 - 1) + 1).toFixed(0))
+    const number = parseInt((Math.random() * (37 - 1) + 1).toFixed(0));
     const deg = this.rotated ? 0 : (360 - 9.72972973) + number * 9.72972973;
 
     myWheel.style.webkitTransform = 'rotate('+deg+'deg)'; 
@@ -73,7 +78,13 @@ class Roulette extends React.Component {
 
     if (this.rotated) {
       setTimeout(() => {
-        console.log(deg2number[number]);
+        // Add number to history
+        this.setState((prev) => ({
+          history: (prev.history.length > 9) ? 
+            [deg2number[number]].concat(prev.history.slice(0,9)) 
+            : [deg2number[number]].concat(prev.history),
+        }));
+        // Provide rolled number to field
         this.props.onRolled(deg2number[number]);
       }, 3000);
     }
@@ -90,8 +101,8 @@ class Roulette extends React.Component {
             <img src={texture} />
           </div>
         </div>
-        <button onClick={() => {this.spinWheelHandler()}}>Start</button>
         <Counter rollHandler={() => {this.spinWheelHandler()}} />
+        <History history={this.state.history}/>
       </>
     );
   }
