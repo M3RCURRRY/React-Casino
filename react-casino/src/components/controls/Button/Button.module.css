@@ -1,0 +1,21 @@
+.button {
+  background-color: #151515;
+  border: 1px solid #00adb5;
+  color: #00adb5;
+  padding: 10px;
+  border-radius: 5px;
+
+  font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter,
+    monospace;
+  font-size: 1rem;
+
+  transition: color 0.075s ease-in-out, border 0.075s ease-in-out,
+    font-weight 0.075s ease-in-out, background-color 0.075s ease-in-out;
+}
+
+.button:hover {
+  background-color: #191919;
+  color: white;
+  border: 1px solid white;
+  font-weight: bold;
+}
