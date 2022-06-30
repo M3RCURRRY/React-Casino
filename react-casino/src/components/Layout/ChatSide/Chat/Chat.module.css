@@ -20,9 +20,11 @@
 }
 
 .chatBox {  
+  display: flex;
+  flex-direction: row;
+
   margin: 10px;
   width: calc(100% - 20px);
-  background-color: blueviolet;
   
   bottom: 0px;
 }
@@ -34,4 +36,39 @@
 
   width: 100%;
   height: 100%;
+}
+
+.msgForm {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.msgTextinput {
+  flex-grow: 2;
+  width: 80%;
+  height: 35px;
+
+  border: 1px solid #00adb5;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: white;
+  background-color: #151515;
+}
+
+.msgTextinput:active {
+  background-color: #191919;
+}
+
+.msgSubmit {
+  background-color: #151515;
+  color: white;
+  border: 1px solid #00adb5;
+  border-radius: 8px;
+  margin-left: 4px;
+  flex-grow: 1;
+}
+
+.msgSubmit:hover {
+  
 }
