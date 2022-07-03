@@ -1,14 +1,26 @@
 import { useState } from "react";
+import Message from "../Message/Message";
 import styles from "./Chat.module.css";
 
 function Chat() {
-
-  const [msg, setMsg] = useState("");
+  const [text, setText] = useState("");
+  const [history, setHistory] = useState([]);
 
   function onSubmitMessageHandler(e) {
     e.preventDefault();
-    setMsg("");
-    console.log(msg);
+
+    const date = new Date();
+    const newMessageData = {
+      key: "User404" + date.getTime(),
+      username: "User404",
+      message: text,
+      timestamp:
+        date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds(),
+    };
+
+    setText("");
+    setHistory(history.concat([newMessageData]));
+    console.log(text);
   }
 
   return (
@@ -17,11 +29,27 @@ function Chat() {
         <div>
           <div className={styles.chatLimiter} />
           <div className={styles.chatLabel}>Online-chat</div>
+          {history.map((item) => {
+            return (
+              <Message
+                key={item.key}
+                user={item.username}
+                message={item.message}
+                timestamp={item.timestamp}
+              />
+            );
+          })}
         </div>
         <div className={styles.chatBox}>
-          <form className={styles.msgForm} onSubmit={e => onSubmitMessageHandler(e)}>
-            <input value={msg} type="text" name="name" className={styles.msgTextinput} onChange={e => {setMsg(e.target.value)}}/>
-            <input type="submit" value="send" className={styles.msgSubmit}/>
+          <form className={styles.msgForm} onSubmit={(e) => onSubmitMessageHandler(e)}>
+            <input
+              value={text}
+              type="text"
+              name="name"
+              className={styles.msgTextinput}
+              onChange={(e) => setText(e.target.value) }
+            />
+            <input type="submit" value="Send" className={styles.msgSubmit} />
           </form>
         </div>
       </div>

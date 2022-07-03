@@ -1,6 +1,7 @@
 .button {
   background-color: #151515;
-  border: 1px solid #00adb5;
+  border-left: 1px solid #00adb5;
+  border-right: 1px solid #00adb5;
   color: #00adb5;
   padding: 10px;
   border-radius: 5px;
@@ -9,13 +10,30 @@
     monospace;
   font-size: 1rem;
 
-  transition: color 0.075s ease-in-out, border 0.075s ease-in-out,
-    font-weight 0.075s ease-in-out, background-color 0.075s ease-in-out;
+  margin: 5px;
+
+  display: flex;
+  flex-direction: row;
+
+  transition: color 0.075s ease-in-out, border-left 0.075s ease-in-out,
+    font-weight 0.075s ease-in-out, background-color 0.075s ease-in-out,
+    border-right 0.075s ease-in-out;
 }
 
 .button:hover {
   background-color: #191919;
   color: white;
-  border: 1px solid white;
+  border-left: 1px solid white;
+  border-right: 1px solid white;
   font-weight: bold;
+}
+
+.buttonAlign {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.buttonAlign > img {
+  margin-right: 5px;
 }

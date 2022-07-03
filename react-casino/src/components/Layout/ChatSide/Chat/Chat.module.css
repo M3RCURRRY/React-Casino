@@ -11,7 +11,7 @@
 }
 
 .chatLabel {
-  margin: 0 auto;
+  margin-bottom: 10px;
   color: #00adb5;
   font-size: 1.2rem;
   display: flex;

@@ -1,0 +1,42 @@
+.messageContainer {
+  margin-bottom: 8px;
+  background-color: #222222;
+}
+
+.msgBox {
+  width: 100%;
+  font-weight: normal;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.messageLimiter {
+  height: 1px;
+  width: 100%;
+  background-color: #00adb5;
+}
+
+.msgUser {
+  font-weight: 300;
+  color: white;
+  font-size: 1.05rem;
+  margin: 5px 0 5px 5px;
+}
+
+.msgContent {
+  margin: 0;
+  margin-top: 5px;
+  align-self: flex-start;
+  font-size: 0.95rem;
+  color: white;
+}
+
+.msgTimestamp {
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: #00adb5;
+  align-self: flex-end;
+  margin: 0px;
+  margin-right: 5px;
+}

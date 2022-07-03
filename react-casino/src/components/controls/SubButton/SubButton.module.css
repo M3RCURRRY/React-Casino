@@ -1,0 +1,14 @@
+.subButton {
+  color: #00adb5;
+  background-color: transparent;
+  margin-right: 10px;
+  border-bottom: 1px solid #00adb5;
+  border-left: 1px solid #00adb5;
+  border-radius: 10px;
+  background-color: #151515;
+
+  padding: 10px;
+  font-size: 0.85rem;
+
+  width: 100px;
+}
