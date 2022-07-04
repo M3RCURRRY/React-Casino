@@ -19,13 +19,6 @@
   flex-direction: column;
 }
 
-#myCanvas {
-  width: 650px;
-  height: 650px;
-
-  transition: transform 4s;
-}
-
 .modal-space {
   position: absolute;
   width: 100%;
