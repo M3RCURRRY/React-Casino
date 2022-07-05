@@ -12,11 +12,13 @@
 }
 
 .roulette, .betManager {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 50%;
   margin-top: 125px;
+  height: 650px;
 }
 
 #myCanvas {
@@ -25,5 +27,15 @@
 }
 
 canvas {
+  position: absolute;
+  top: 0;
   transition: transform 4s;
+}
+
+.countdown {
+  position: absolute;
+  top: 320px;
+  z-index: 1;
+  color: #00adb5;
+  font-size: 1.5rem;
 }

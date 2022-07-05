@@ -1,0 +1,31 @@
+.betManager {
+  color: white;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 10px;
+
+  border-top: 1px solid #00adb5;
+  border-bottom: 1px solid #00adb5;
+  border-radius: 8px;
+}
+
+.betControls {
+  display: flex;
+  flex-direction: row;
+}
+
+.betNumber {
+  background-color: transparent;
+  border: 2px solid black;
+  resize: none;
+  color: #00adb5;
+  font-size: 1rem;
+  width: 100%;
+}
+
+.betNumber:active {
+
+}

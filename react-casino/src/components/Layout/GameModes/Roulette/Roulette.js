@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import BetManager from "../../BetManager/BetManager";
 import styles from "./Roulette.module.css";
 
 function renderCanvas() {
@@ -9,7 +10,6 @@ function renderCanvas() {
   canvas.height = 650;
 
   let ctx = canvas.getContext("2d");
-  ctx.font = "30px Arial";
 
   function randomHex() {
     return "#" + Math.floor(Math.random()*16777215).toString(16);
@@ -30,9 +30,6 @@ function renderCanvas() {
   }
 
   drawPieSlice(ctx, 325,325,315, 0, Math.PI*2, "#151515");
-
-  ctx.fillStyle = "red";
-  ctx.fillText("30", 255, 325);
 }
 
 function drawLine(ctx, startX, startY, endX, endY) {
@@ -72,17 +69,51 @@ function drawPieSlice(ctx,centerX, centerY, radius, startAngle, endAngle, color 
   ctx.fill();
 }
 
-function Roulette(props) {
+
+function Roulette() {
+
+  const [time, setTime] = useState(5);
+  const intervalRef = useRef();
+
+  useEffect(() => {
+    renderCanvas();
+
+    intervalRef.current = setInterval(() => {
+      setTime((time) => time - 1);
+    }, 1000);
+
+    return function clearCounter() {
+      clearInterval(intervalRef.current);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (time < 1) {
+      clearInterval(intervalRef.current);
+      spinWheel(); 
+      setTimeout(() => {
+        setTime(5);
+        intervalRef.current = setInterval(() => {
+          setTime((time) => time - 1);
+        }, 1000);
+      }, 4000);
+    }
+  }, [time]);
 
   return(
     <div className={styles.rouletteLayout}>
       <div className={styles.rouletteContainer}>
         <div className={styles.roulette}>
           <canvas id="myCanvas"></canvas>
+          <div className={styles.countdown}>
+            {time}
+          </div>
         </div>
         <div className={styles.betManager}>
-          <button onClick={renderCanvas}>Render</button>
+          {/* <button onClick={renderCanvas}>Render</button>
           <button onClick={spinWheel}>Spin</button>
+          <button onClick={() => setTime(time + 1)}>Get IntervalID</button> */}
+          <BetManager/>
         </div>
       </div>
     </div>
