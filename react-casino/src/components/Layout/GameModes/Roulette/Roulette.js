@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import BetManager from "../../BetManager/BetManager";
+import BetPosition from "../../BetPosition/BetPosition";
 import styles from "./Roulette.module.css";
 
 function renderCanvas() {
@@ -73,7 +74,13 @@ function drawPieSlice(ctx,centerX, centerY, radius, startAngle, endAngle, color 
 function Roulette() {
 
   const [time, setTime] = useState(5);
+  const [bet, setBet] = useState(0);
   const intervalRef = useRef();
+
+  const grayRef = useRef();
+  const redRef = useRef();
+  const blueRef = useRef();
+  const goldRef = useRef();
 
   useEffect(() => {
     renderCanvas();
@@ -100,6 +107,13 @@ function Roulette() {
     }
   }, [time]);
 
+  function clearPositions() {
+    grayRef.current.clearBets();
+    redRef.current.clearBets();
+    blueRef.current.clearBets();
+    goldRef.current.clearBets();
+  }
+
   return(
     <div className={styles.rouletteLayout}>
       <div className={styles.rouletteContainer}>
@@ -110,11 +124,14 @@ function Roulette() {
           </div>
         </div>
         <div className={styles.betManager}>
-          {/* <button onClick={renderCanvas}>Render</button>
-          <button onClick={spinWheel}>Spin</button>
-          <button onClick={() => setTime(time + 1)}>Get IntervalID</button> */}
-          <BetManager/>
+          <BetManager currentBet={bet} setBetHandler={setBet}/>
         </div>
+      </div>
+      <div className={styles.positionsLayout}>
+        <BetPosition currentBet={bet} ref={grayRef} color={"gray"}/>
+        <BetPosition currentBet={bet} ref={redRef} color={"red"}/>
+        <BetPosition currentBet={bet} ref={blueRef} color={"blue"}/>
+        <BetPosition currentBet={bet} ref={goldRef} background={"rgba(255, 215, 0, 0.1)"} color={"rgba(255, 215, 0, 1)"}/>
       </div>
     </div>
   )
