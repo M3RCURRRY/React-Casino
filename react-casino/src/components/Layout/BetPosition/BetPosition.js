@@ -1,16 +1,10 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import styles from "./BetPosition.module.css";
 
 function BetPosition(props) {
   
-  const [players, setPlayers] = useState({});
-
   function bettingHandler() {
-    setPlayers(Object.assign(players, {"Username": props.currentBet}));
-  }
-
-  function clearBets() {
-    setPlayers({});
+    props.handler();
   }
 
   return(
@@ -19,15 +13,7 @@ function BetPosition(props) {
         Click to bet
       </div>
       <div>
-        {
-          Object.entries(players).map((player, index) => {
-            return (
-              <div key={player[0] + index}>
-                {player[0] + " - " + player[1]} 
-              </div>
-            )
-          })
-        }
+        {`Player : ${props.currentBet}`}
       </div>
     </div>
   )

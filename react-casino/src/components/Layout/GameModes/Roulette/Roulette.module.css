@@ -48,3 +48,13 @@ canvas {
   flex-direction: row;
   justify-content: space-around;
 }
+
+.marker {
+  position: absolute;
+  top: -5px;
+  background-color: white;
+  z-index: 1;
+  width: 5px;
+  outline: 2px solid black;
+  height: 25px;
+}

@@ -10,7 +10,7 @@ function renderCanvas() {
   canvas.width = 650;
   canvas.height = 650;
 
-  let ctx = canvas.getContext("2d");
+  const ctx = canvas.getContext("2d");
 
   function randomHex() {
     return "#" + Math.floor(Math.random()*16777215).toString(16);
@@ -30,20 +30,7 @@ function renderCanvas() {
     lastPoint += computed;
   }
 
-  drawPieSlice(ctx, 325,325,315, 0, Math.PI*2, "#151515");
-}
-
-function drawLine(ctx, startX, startY, endX, endY) {
-  ctx.beginPath();
-  ctx.moveTo(startX, startY);
-  ctx.lineTo(endX, endY);
-  ctx.stroke();
-}
-
-function drawArc(ctx, centerX, centerY, radius, startAngle, endAngle){
-  ctx.beginPath();
-  ctx.arc(centerX, centerY, radius, startAngle, endAngle);
-  ctx.stroke();
+  drawPieSlice(ctx, 325,325,310, 0, Math.PI*2, "#151515");
 }
 
 let rotated = false;
@@ -75,12 +62,13 @@ function Roulette() {
 
   const [time, setTime] = useState(5);
   const [bet, setBet] = useState(0);
-  const intervalRef = useRef();
 
-  const grayRef = useRef();
-  const redRef = useRef();
-  const blueRef = useRef();
-  const goldRef = useRef();
+  const [grayBets, setGrayBets] = useState({});
+  const [redBets, setRedBets] = useState({});
+  const [blueBets, setBlueBets] = useState({});
+  const [goldBets, setGoldBets] = useState({});
+
+  const intervalRef = useRef();
 
   useEffect(() => {
     renderCanvas();
@@ -108,16 +96,33 @@ function Roulette() {
   }, [time]);
 
   function clearPositions() {
-    grayRef.current.clearBets();
-    redRef.current.clearBets();
-    blueRef.current.clearBets();
-    goldRef.current.clearBets();
+    
+  }
+
+  function setPosition(pos) {
+    switch (pos) {
+      case "gray":
+        setGrayBets(Object.assign(grayBets, {"User": bet}));
+        break;
+      case "red":
+        setRedBets(Object.assign(redBets, {"User": bet}));
+        break;
+      case "blue":
+        setBlueBets(Object.assign(blueBets, {"User": bet}))
+        break;
+      case "gold":
+        setGoldBets(Object.assign(goldBets, {"User": bet}))
+        break;
+      default:      
+        break;
+    }
   }
 
   return(
     <div className={styles.rouletteLayout}>
       <div className={styles.rouletteContainer}>
         <div className={styles.roulette}>
+          <div className={styles.marker}></div>
           <canvas id="myCanvas"></canvas>
           <div className={styles.countdown}>
             {time}
@@ -128,10 +133,10 @@ function Roulette() {
         </div>
       </div>
       <div className={styles.positionsLayout}>
-        <BetPosition currentBet={bet} ref={grayRef} color={"gray"}/>
-        <BetPosition currentBet={bet} ref={redRef} color={"red"}/>
-        <BetPosition currentBet={bet} ref={blueRef} color={"blue"}/>
-        <BetPosition currentBet={bet} ref={goldRef} background={"rgba(255, 215, 0, 0.1)"} color={"rgba(255, 215, 0, 1)"}/>
+        <BetPosition currentBet={bet} color={"gray"} handler={() => setPosition("gray")}/>
+        <BetPosition currentBet={bet} color={"red"} handler={() => setPosition("red")}/>
+        <BetPosition currentBet={bet} color={"blue"} handler={() => setPosition("blue")}/>
+        <BetPosition currentBet={bet} background={"rgba(255, 215, 0, 0.1)"} color={"rgba(255, 215, 0, 1)"} handler={() => setPosition("gold")}/>
       </div>
     </div>
   )
