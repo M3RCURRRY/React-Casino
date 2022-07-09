@@ -11,7 +11,9 @@ function App() {
   return (
     <div className="App">
       <div id="modal-space"></div>
-      <ChatSide />
+      <div className="chatSideAlign">
+        <ChatSide />
+      </div>
       <div className="contentContainer">
         <div className="contentWrapper">
           <Header>

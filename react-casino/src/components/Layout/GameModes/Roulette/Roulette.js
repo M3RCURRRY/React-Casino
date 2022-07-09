@@ -37,7 +37,10 @@ let rotated = false;
 
 function spinWheel () {
   var div = document.getElementById('myCanvas'),
-    deg = rotated ? 0 : 1066;
+    deg = rotated ? 0 : 928;
+
+  let ctx = div.getContext('2d');
+  ctx.rotate(45 * Math.PI / 180);
 
   div.style.webkitTransform = 'rotate('+deg+'deg)'; 
   div.style.mozTransform    = 'rotate('+deg+'deg)'; 
