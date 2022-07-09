@@ -1,0 +1,41 @@
+.historyContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 25px;
+
+  min-height: 44px;
+}
+
+.historyLabel {
+  color: #00adb5;
+  font-size: 1.2rem;
+}
+
+.grayRoll, .redRoll, .blueRoll, .goldRoll {
+  width: 4px;
+  border-radius: 2px;
+  margin: 4px;
+}
+
+.grayRoll {
+  background-color: #121111;
+  height: 20px;
+}
+
+.redRoll {
+  background-color: red;
+  height: 28px;
+}
+
+.blueRoll {
+  background-color: #006ebd;
+  height: 36px;
+}
+
+.goldRoll {
+  background-color: gold;
+  height: 44px;
+}

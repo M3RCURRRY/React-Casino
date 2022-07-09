@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import BetManager from "../../BetManager/BetManager";
 import BetPosition from "../../BetPosition/BetPosition";
+import RollHistory from "../../RollHistory/RollHistory";
 import styles from "./Roulette.module.css";
 
 function renderCanvas() {
@@ -33,11 +34,16 @@ function renderCanvas() {
   drawPieSlice(ctx, 325,325,310, 0, Math.PI*2, "#151515");
 }
 
+function calcDeg() {
+  return (360 + Math.floor(Math.random() * 361));
+}
+
+let deg = 0;
 let rotated = false;
 
 function spinWheel () {
-  var div = document.getElementById('myCanvas'),
-    deg = rotated ? 0 : 928;
+  var div = document.getElementById('myCanvas');
+  deg = calcDeg();
 
   let ctx = div.getContext('2d');
   ctx.rotate(45 * Math.PI / 180);
@@ -65,6 +71,7 @@ function Roulette() {
 
   const [time, setTime] = useState(5);
   const [bet, setBet] = useState(0);
+  const [rolls, setRolls] = useState([]);
 
   const [grayBets, setGrayBets] = useState({});
   const [redBets, setRedBets] = useState({});
@@ -88,7 +95,8 @@ function Roulette() {
   useEffect(() => {
     if (time < 1) {
       clearInterval(intervalRef.current);
-      spinWheel(); 
+      spinWheel();
+      setRolls([...rolls, "red"]);
       setTimeout(() => {
         setTime(5);
         intervalRef.current = setInterval(() => {
@@ -101,6 +109,8 @@ function Roulette() {
   function clearPositions() {
     
   }
+
+  console.log(rolls);
 
   function setPosition(pos) {
     switch (pos) {
@@ -132,6 +142,7 @@ function Roulette() {
           </div>
         </div>
         <div className={styles.betManager}>
+          <RollHistory rolls={rolls}/>
           <BetManager currentBet={bet} setBetHandler={setBet}/>
         </div>
       </div>

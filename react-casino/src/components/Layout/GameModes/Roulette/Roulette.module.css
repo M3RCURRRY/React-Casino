@@ -60,3 +60,7 @@ canvas {
   outline: 2px solid black;
   height: 25px;
 }
+
+.betManager {
+  flex-direction: column;
+}
