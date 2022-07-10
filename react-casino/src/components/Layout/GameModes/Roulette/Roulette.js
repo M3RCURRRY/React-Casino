@@ -40,13 +40,13 @@ function calcDeg() {
 
 let deg = 0;
 let rotated = false;
+let direction = true;
 
 function spinWheel () {
-  var div = document.getElementById('myCanvas');
-  deg = calcDeg();
-
-  let ctx = div.getContext('2d');
-  ctx.rotate(45 * Math.PI / 180);
+  const div = document.getElementById('myCanvas');
+  if (deg > 10000) direction = false;
+  if (deg < 720 ) direction = true;
+  (direction) ? deg += calcDeg() : deg -= calcDeg();
 
   div.style.webkitTransform = 'rotate('+deg+'deg)'; 
   div.style.mozTransform    = 'rotate('+deg+'deg)'; 
@@ -92,12 +92,23 @@ function Roulette() {
     }
   }, []);
 
+  function determineColor() {
+    const colorIndex = Math.floor((deg % 360) / 9) - 1;
+  
+    console.log(colorIndex);
+
+    if (colorIndex % 21 === 0 && colorIndex != 0) setRolls([...rolls, "gold"]);
+    else if (colorIndex % 5 === 0 && colorIndex != 0) setRolls([...rolls, "blue"]);
+    else if (colorIndex % 2 === 1) setRolls([...rolls, "red"]);
+    else setRolls([...rolls, "gray"]);;
+  }
+
   useEffect(() => {
     if (time < 1) {
       clearInterval(intervalRef.current);
       spinWheel();
-      setRolls([...rolls, "red"]);
       setTimeout(() => {
+        determineColor();
         setTime(5);
         intervalRef.current = setInterval(() => {
           setTime((time) => time - 1);
@@ -109,8 +120,6 @@ function Roulette() {
   function clearPositions() {
     
   }
-
-  console.log(rolls);
 
   function setPosition(pos) {
     switch (pos) {
@@ -136,7 +145,7 @@ function Roulette() {
       <div className={styles.rouletteContainer}>
         <div className={styles.roulette}>
           <div className={styles.marker}></div>
-          <canvas id="myCanvas"></canvas>
+          <canvas id="myCanvas" className={styles.canvas}></canvas>
           <div className={styles.countdown}>
             {time}
           </div>
