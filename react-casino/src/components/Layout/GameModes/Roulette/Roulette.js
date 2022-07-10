@@ -73,10 +73,10 @@ function Roulette() {
   const [bet, setBet] = useState(0);
   const [rolls, setRolls] = useState([]);
 
-  const [grayBets, setGrayBets] = useState({});
-  const [redBets, setRedBets] = useState({});
-  const [blueBets, setBlueBets] = useState({});
-  const [goldBets, setGoldBets] = useState({});
+  const grayRef = useRef(null);
+  const redRef = useRef(null);
+  const blueRef = useRef(null);
+  const goldRef = useRef(null);
 
   const intervalRef = useRef();
 
@@ -93,7 +93,7 @@ function Roulette() {
   }, []);
 
   function determineColor() {
-    const colorIndex = Math.floor((deg % 360) / 9) - 1;
+    const colorIndex = Math.floor((deg % 360) / 9);
   
     console.log(colorIndex);
 
@@ -109,6 +109,7 @@ function Roulette() {
       spinWheel();
       setTimeout(() => {
         determineColor();
+        clearPositions();
         setTime(5);
         intervalRef.current = setInterval(() => {
           setTime((time) => time - 1);
@@ -118,26 +119,14 @@ function Roulette() {
   }, [time]);
 
   function clearPositions() {
-    
+    grayRef.current.clearBets();
+    redRef.current.clearBets();
+    blueRef.current.clearBets();
+    goldRef.current.clearBets();
   }
 
-  function setPosition(pos) {
-    switch (pos) {
-      case "gray":
-        setGrayBets(Object.assign(grayBets, {"User": bet}));
-        break;
-      case "red":
-        setRedBets(Object.assign(redBets, {"User": bet}));
-        break;
-      case "blue":
-        setBlueBets(Object.assign(blueBets, {"User": bet}))
-        break;
-      case "gold":
-        setGoldBets(Object.assign(goldBets, {"User": bet}))
-        break;
-      default:      
-        break;
-    }
+  function getCurrentBet() {
+    return bet;
   }
 
   return(
@@ -156,10 +145,10 @@ function Roulette() {
         </div>
       </div>
       <div className={styles.positionsLayout}>
-        <BetPosition currentBet={bet} color={"gray"} handler={() => setPosition("gray")}/>
-        <BetPosition currentBet={bet} color={"red"} handler={() => setPosition("red")}/>
-        <BetPosition currentBet={bet} color={"blue"} handler={() => setPosition("blue")}/>
-        <BetPosition currentBet={bet} background={"rgba(255, 215, 0, 0.1)"} color={"rgba(255, 215, 0, 1)"} handler={() => setPosition("gold")}/>
+        <BetPosition getBet={getCurrentBet} color={"gray"} ref={grayRef}/>
+        <BetPosition getBet={getCurrentBet} color={"red"} ref={redRef}/>
+        <BetPosition getBet={getCurrentBet} color={"blue"} ref={blueRef}/>
+        <BetPosition getBet={getCurrentBet} background={"rgba(255, 215, 0, 0.1)"} color={"rgba(255, 215, 0, 1)"} ref={goldRef}/>
       </div>
     </div>
   )

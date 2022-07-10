@@ -1,22 +1,48 @@
 import React, { useState } from "react";
 import styles from "./BetPosition.module.css";
 
-function BetPosition(props) {
-  
-  function bettingHandler() {
-    props.handler();
+class BetPosition extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {};
   }
 
-  return(
-    <div className={styles.positionContainer} style={{backgroundColor: props.background}}>
-      <div className={styles.label} style={{border: `4px outset ${props.color}`}} onClick={bettingHandler}>
-        Click to bet
+  addBet() {
+    this.setState(
+      (prev) => (Object.assign(prev), { Player: this.props.getBet() })
+    );
+  }
+
+  clearBets() {
+    console.log("Called");
+    console.log(this.state);
+    this.setState(new Object());
+  }
+
+  render() {
+    return (
+      <div
+        className={styles.positionContainer}
+        style={{ backgroundColor: this.props.background }}
+      >
+        <div
+          className={styles.label}
+          style={{ border: `4px outset ${this.props.color}` }}
+          onClick={() => this.addBet()}
+        >
+          Click to bet
+        </div>
+        <div>
+          {
+            Object.entries(this.state).map((item, index) => {
+              return <div>{item[0]} - {item[1]}</div>
+            })
+          }
+        </div>
       </div>
-      <div>
-        {`Player : ${props.currentBet}`}
-      </div>
-    </div>
-  )
+    );
+  }
 }
 
 export default BetPosition;
