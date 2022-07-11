@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/React-Casino/static/css/main.3dfc0fde.css",
-    "main.js": "/React-Casino/static/js/main.75ae370d.js",
+    "main.css": "/React-Casino/static/css/main.b730db89.css",
+    "main.js": "/React-Casino/static/js/main.f0e03ec7.js",
     "static/js/787.91591c67.chunk.js": "/React-Casino/static/js/787.91591c67.chunk.js",
     "static/media/logo_transparent.png": "/React-Casino/static/media/logo_transparent.863b7e43c9c0197c8854.png",
     "index.html": "/React-Casino/index.html",
-    "main.3dfc0fde.css.map": "/React-Casino/static/css/main.3dfc0fde.css.map",
-    "main.75ae370d.js.map": "/React-Casino/static/js/main.75ae370d.js.map",
+    "main.b730db89.css.map": "/React-Casino/static/css/main.b730db89.css.map",
+    "main.f0e03ec7.js.map": "/React-Casino/static/js/main.f0e03ec7.js.map",
     "787.91591c67.chunk.js.map": "/React-Casino/static/js/787.91591c67.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.3dfc0fde.css",
-    "static/js/main.75ae370d.js"
+    "static/css/main.b730db89.css",
+    "static/js/main.f0e03ec7.js"
   ]
 }
