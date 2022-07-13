@@ -11,3 +11,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+#root {
+  overflow: hidden;
+}
+
+#modal-root {
+  position: relative;
+  z-index: 999;
+}

@@ -10,14 +10,12 @@ class BetPosition extends React.Component {
 
   addBet() {
     this.setState(
-      (prev) => (Object.assign(prev), { Player: this.props.getBet() })
+      (prev) => (Object.assign(prev), { "Player": this.props.getBet() })
     );
   }
 
   clearBets() {
-    console.log("Called");
-    console.log(this.state);
-    this.setState(new Object());
+    this.setState({});
   }
 
   render() {
@@ -36,7 +34,7 @@ class BetPosition extends React.Component {
         <div>
           {
             Object.entries(this.state).map((item, index) => {
-              return <div>{item[0]} - {item[1]}</div>
+              return <div key={index}>{item[0]} - {item[1]}</div>
             })
           }
         </div>

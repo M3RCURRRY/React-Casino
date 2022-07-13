@@ -3,6 +3,7 @@ import BetManager from "../../BetManager/BetManager";
 import BetPosition from "../../BetPosition/BetPosition";
 import RollHistory from "../../RollHistory/RollHistory";
 import styles from "./Roulette.module.css";
+import * as CanvasHelper from "./../../../../canvasHelper";
 
 function renderCanvas() {
   let canvas = document.getElementById("myCanvas");
@@ -93,14 +94,16 @@ function Roulette() {
   }, []);
 
   function determineColor() {
-    const colorIndex = Math.floor((deg % 360) / 9);
-  
-    console.log(colorIndex);
+    const colorIndex = Math.floor((deg % 360) / 9) + 1;
 
-    if (colorIndex % 21 === 0 && colorIndex != 0) setRolls([...rolls, "gold"]);
-    else if (colorIndex % 5 === 0 && colorIndex != 0) setRolls([...rolls, "blue"]);
-    else if (colorIndex % 2 === 1) setRolls([...rolls, "red"]);
-    else setRolls([...rolls, "gray"]);;
+    let color = null;
+    //setRolls([...rolls, "gold"]);
+    if (colorIndex % 21 === 0 && colorIndex != 0) color = "gold";
+    else if (colorIndex % 5 === 0 && colorIndex != 0) color = "blue";
+    else if (colorIndex % 2 === 1 && colorIndex != 0) color = "red";
+    else color = "gray";
+
+    setRolls((rolls.length > 14) ? [...(rolls.slice(1)), color] : [...rolls, color]);
   }
 
   useEffect(() => {

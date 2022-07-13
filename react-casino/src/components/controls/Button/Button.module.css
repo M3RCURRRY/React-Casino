@@ -15,6 +15,8 @@
   display: flex;
   flex-direction: row;
 
+  cursor: pointer;
+
   transition: color 0.075s ease-in-out, border-left 0.075s ease-in-out,
     font-weight 0.075s ease-in-out, background-color 0.075s ease-in-out,
     border-right 0.075s ease-in-out;

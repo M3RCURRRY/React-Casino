@@ -10,7 +10,6 @@ function App() {
 
   return (
     <div className="App">
-      <div id="modal-space"></div>
       <div className="chatSideAlign">
         <ChatSide />
       </div>
@@ -24,7 +23,6 @@ function App() {
           <ContentArea>
             <Roulette/>
           </ContentArea>
-          
         </div>
       </div>
     </div>
