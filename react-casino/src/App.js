@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Link, BrowserRouter as Router } from "react-router-dom";
+import { Switch, Link, BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import "./App.css";
 import Button from "./components/controls/Button/Button";
@@ -34,7 +34,9 @@ function App() {
               </Link>
             </Header>
             <ContentArea>
-              <Roulette/>
+              <Routes>
+                <Route path="/" element={<Roulette/>} />
+              </Routes>
             </ContentArea>
           </div>
         </div>
