@@ -2,7 +2,7 @@ import styles from "./RollHistory.module.css";
 
 function RollHistory(props) {
   return (
-    <>
+    <div className={styles.historyBox}>
       <p className={styles.historyLabel}>Roll history</p>
       <div className={styles.historyContainer}>
         {props.rolls.map((item, index) => {
@@ -26,7 +26,7 @@ function RollHistory(props) {
           return <div key={index} className={style} />;
         })}
       </div>
-    </>
+    </div>
   );
 }
 

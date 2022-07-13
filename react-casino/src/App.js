@@ -1,4 +1,7 @@
 import React from "react";
+
+import { Link, BrowserRouter as Router } from "react-router-dom";
+
 import "./App.css";
 import Button from "./components/controls/Button/Button";
 import ContentArea from "./components/Layout/CasinoSide/ContentArea/ContentArea";
@@ -13,18 +16,29 @@ function App() {
       <div className="chatSideAlign">
         <ChatSide />
       </div>
-      <div className="contentContainer">
-        <div className="contentWrapper">
-          <Header>
-            <Button handler={() => null} content={"Roulette"}/>
-            <Button handler={() => console.log("test")} content={"Jackpot"} />
-            <Button handler={() => console.log("test")} content={"Landmines"} />
-          </Header>
-          <ContentArea>
-            <Roulette/>
-          </ContentArea>
+
+      <Router>
+        <div className="contentContainer">
+          <div className="contentWrapper">
+            <Header>
+              <Link to="/">
+                <Button handler={() => null} content={"Roulette"}/>
+              </Link>
+
+              <Link to="/jackpot">
+                <Button handler={() => console.log("test")} content={"Jackpot"} />
+              </Link>
+
+              <Link to="/landmines">
+                <Button handler={() => console.log("test")} content={"Landmines"} />
+              </Link>
+            </Header>
+            <ContentArea>
+              <Roulette/>
+            </ContentArea>
+          </div>
         </div>
-      </div>
+      </Router>
     </div>
   );
 }

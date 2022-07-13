@@ -103,7 +103,7 @@ function Roulette() {
     else if (colorIndex % 2 === 1 && colorIndex != 0) color = "red";
     else color = "gray";
 
-    setRolls((rolls.length > 14) ? [...(rolls.slice(1)), color] : [...rolls, color]);
+    setRolls((rolls.length > 19) ? [...(rolls.slice(1)), color] : [...rolls, color]);
   }
 
   useEffect(() => {
