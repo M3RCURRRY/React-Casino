@@ -46,3 +46,7 @@ function App() {
 }
 
 export default App;
+
+// defaultProps - null undefined false
+// setTimeout (flushSync)
+// разница статик и динамик импорта
